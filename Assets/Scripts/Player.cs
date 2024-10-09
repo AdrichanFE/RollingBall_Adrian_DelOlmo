@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class Player : MonoBehaviour
     [SerializeField] Vector3 direccionSalto;
     [SerializeField] float fuerzaSalto,fuerzaMove;
     [SerializeField] int vida=100;
+    [SerializeField] TMP_Text textoPuntuacion;
+    int puntuacion;
+    
     Vector3 direccionMove;
 
     //CharacterController controller;
@@ -68,6 +72,8 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.CompareTag("Coleccionable"))
         {
+            puntuacion += 20;
+            textoPuntuacion.SetText("Puntuacion: " + puntuacion);
             Destroy(other.gameObject);
         }
        
@@ -79,6 +85,7 @@ public class Player : MonoBehaviour
             vida -= 10;
             Muerte();
         }
+        
     }
 
 }
