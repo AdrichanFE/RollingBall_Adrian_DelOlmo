@@ -6,11 +6,12 @@ TagManager:
   tags:
   - Coleccionable
   - RodilloMortal
+  - DetectorCamara
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Suelo
   - Water
   - UI
   - 

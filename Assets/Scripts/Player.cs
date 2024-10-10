@@ -9,10 +9,12 @@ public class Player : MonoBehaviour
     Rigidbody rb;
     [SerializeField] float velocidad,x,z;
     [SerializeField] Vector3 direccionSalto;
-    [SerializeField] float fuerzaSalto,fuerzaMove;
+    [SerializeField] float fuerzaSalto,fuerzaMove,distanciaDetSuelo;
     [SerializeField] int vida=100;
     [SerializeField] TMP_Text textoPuntuacion;
+    [SerializeField] LayerMask queEsSuelo;
     int puntuacion;
+    
     
     Vector3 direccionMove;
 
@@ -55,8 +57,17 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb.AddForce(direccionSalto*fuerzaSalto, ForceMode.Impulse);
+            if (DetectarSuelo() == true)
+            {
+                rb.AddForce(direccionSalto * fuerzaSalto, ForceMode.Impulse);
+            }
+            
         }
+    }
+    bool DetectarSuelo()
+    {
+        bool resultado=Physics.Raycast(transform.position, new Vector3(0, -1, 0), distanciaDetSuelo,queEsSuelo);
+        return resultado;
     }
     
     void Muerte()
@@ -70,8 +81,9 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        if (other.gameObject.CompareTag("Coleccionable"))
+        if (other.gameObject.CompareTag("Coleccionable")) 
         {
+            
             puntuacion += 20;
             textoPuntuacion.SetText("Puntuacion: " + puntuacion);
             Destroy(other.gameObject);
