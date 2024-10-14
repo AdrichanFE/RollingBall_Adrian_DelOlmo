@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     [SerializeField] int vida=100;
     [SerializeField] TMP_Text textoPuntuacion;
     [SerializeField] LayerMask queEsSuelo;
+    [SerializeField] AudioClip sonidoNota;
+    [SerializeField] AudioManager audioManager;
     int puntuacion;
     
     
@@ -83,9 +85,10 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.CompareTag("Coleccionable")) 
         {
-            
+            audioManager.ReproducirSonido(sonidoNota);
             puntuacion += 20;
             textoPuntuacion.SetText("Puntuacion: " + puntuacion);
+
             Destroy(other.gameObject);
         }
        
