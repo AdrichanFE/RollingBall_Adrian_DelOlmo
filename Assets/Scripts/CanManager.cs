@@ -8,11 +8,11 @@ public class CanManager : MonoBehaviour
 {
     public void EmpezarPartida()
     {
-        //SceneManager
+        SceneManager.LoadScene(1);
     }
     public void TerminarJuego()
     {
-
+        Application.Quit();
     }
 
 
