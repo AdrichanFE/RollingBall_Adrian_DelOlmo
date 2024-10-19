@@ -10,60 +10,69 @@ public class Player : MonoBehaviour
     [SerializeField] float velocidad,x,z;
     [SerializeField] Vector3 direccionSalto;
     [SerializeField] float fuerzaSalto,fuerzaMove,distanciaDetSuelo;
-    [SerializeField] int vida=100;
+    [SerializeField] int vida;
     [SerializeField] TMP_Text textoPuntuacion;
     [SerializeField] LayerMask queEsSuelo;
     [SerializeField] AudioClip sonidoNota;
     [SerializeField] AudioManager audioManager;
     int puntuacion;
-    
-    
     Vector3 direccionMove;
 
-    //CharacterController controller;
-    //[SerializeField] Vector3 direccion;
+    public bool esVistaCenital { get; set; } = false;//Esto lo uso para poder usar esta variable en el detector de la camara cenital
+
+    
     // Start is called before the first frame update
     void Start()
     {
-        //controller = GetComponent<CharacterController>();
-        rb=GetComponent<Rigidbody>();
-        vida = 100;
+        rb=GetComponent<Rigidbody>();    
     }
 
     // Update is called once per frame
     void Update()
     {
-        x = Input.GetAxisRaw("Horizontal");
-        z = Input.GetAxisRaw("Vertical");
-        Saltar();
-        
-        //float x=Input.GetAxisRaw("Horizontal");
-        //float z=Input.GetAxisRaw("Vertical");
-        
-        //Vector3 movimiento=new Vector3(x,0,z).normalized*velocidad*Time.deltaTime;
-        //controller.Move(movimiento);
 
+        if (!esVistaCenital)
+        {
+            x = Input.GetAxisRaw("Horizontal");
+            z = Input.GetAxisRaw("Vertical");
+            Saltar();
+        }
+    
     }
     private void FixedUpdate()//Ciclo de fisicas, es fijo. Se reproduce 0.02 segundos.
     {
-        Movimiento();
+        if (esVistaCenital)
+        {
+            MovimientoCenital();
+        }
+        else
+        {
+            MovimientoNormal();
+        }
+        
     }
 
-    void Movimiento()
+    void MovimientoNormal()
     { 
          direccionMove=new Vector3(x,0,z);
          rb.AddForce((direccionMove).normalized * fuerzaMove, ForceMode.Force);
     }
 
+    void MovimientoCenital()
+    {
+        Vector3 haciaDelante = Camera.main.transform.forward;
+        haciaDelante.y=0;//Asi ignoramos el eje Y
+        haciaDelante = haciaDelante.normalized;
+
+        Vector3 movimientoCenital = transform.TransformDirection(haciaDelante) * fuerzaMove;
+        rb.AddForce(movimientoCenital, ForceMode.Force);
+    }
+
     void Saltar()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (DetectarSuelo() == true)
-            {
-                rb.AddForce(direccionSalto * fuerzaSalto, ForceMode.Impulse);
-            }
-            
+        if (Input.GetKeyDown(KeyCode.Space)&&!esVistaCenital&&DetectarSuelo())
+        { 
+            rb.AddForce(direccionSalto * fuerzaSalto, ForceMode.Impulse);  
         }
     }
     bool DetectarSuelo()
@@ -72,13 +81,13 @@ public class Player : MonoBehaviour
         return resultado;
     }
     
-    void Muerte()
-    {
-        if (vida <= 0)
-        {
-            Destroy(gameObject);
-        }
-    }
+    //void Muerte()
+    //{
+    //    if (vida <= 0)
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //}
 
     private void OnTriggerEnter(Collider other)
     {
@@ -93,14 +102,14 @@ public class Player : MonoBehaviour
         }
        
     }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("RodilloMortal"))
-        {
-            vida -= 10;
-            Muerte();
-        }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.CompareTag("RodilloMortal"))
+    //    {
+    //        vida -= 10;
+    //        Muerte();
+    //    }
         
-    }
+    //}
 
 }

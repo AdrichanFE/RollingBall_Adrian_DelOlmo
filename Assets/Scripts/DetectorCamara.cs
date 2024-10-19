@@ -7,6 +7,7 @@ public class DetectorCamara : MonoBehaviour
     [SerializeField] GameObject virtualCam1;
     [SerializeField] GameObject virtualCam2;
 
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
