@@ -34,7 +34,9 @@ public class DetectorCamaraCenital : MonoBehaviour
     //{
     //    if (other.gameObject.CompareTag("Player"))
     //    {
-           
+                //player.esVistaCenital = false;
+                //virtualCam1.SetActive(true);
+                //virtualCamCenital.SetActive(false);
 
 
 
