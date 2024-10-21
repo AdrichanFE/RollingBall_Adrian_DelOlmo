@@ -30,25 +30,19 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+            x = Input.GetAxisRaw("Horizontal");
+            z = Input.GetAxisRaw("Vertical");
 
         if (!esVistaCenital)
         {
-            x = Input.GetAxisRaw("Horizontal");
-            z = Input.GetAxisRaw("Vertical");
             Saltar();
         }
     
     }
     private void FixedUpdate()//Ciclo de fisicas, es fijo. Se reproduce 0.02 segundos.
     {
-        if (esVistaCenital)
-        {
-            MovimientoCenital();
-        }
-        else
-        {
-            MovimientoNormal();
-        }
+        MovimientoNormal();
+        
         
     }
 
@@ -58,15 +52,6 @@ public class Player : MonoBehaviour
          rb.AddForce((direccionMove).normalized * fuerzaMove, ForceMode.Force);
     }
 
-    void MovimientoCenital()
-    {
-        Vector3 haciaDelante = Camera.main.transform.forward;
-        haciaDelante.y=0;//Asi ignoramos el eje Y
-        haciaDelante = haciaDelante.normalized;
-
-        Vector3 movimientoCenital = transform.TransformDirection(haciaDelante) * fuerzaMove;
-        rb.AddForce(movimientoCenital, ForceMode.Force);
-    }
 
     void Saltar()
     {

@@ -30,17 +30,6 @@ public class DetectorCamaraCenital : MonoBehaviour
 
         }
     }
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.gameObject.CompareTag("Player"))
-    //    {
-                //player.esVistaCenital = false;
-                //virtualCam1.SetActive(true);
-                //virtualCamCenital.SetActive(false);
-
-
-
-    //    }
-    //}
+   
 
 }
