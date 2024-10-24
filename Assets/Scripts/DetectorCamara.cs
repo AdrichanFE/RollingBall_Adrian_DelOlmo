@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class DetectorCamara : MonoBehaviour
 {
-    [SerializeField] GameObject virtualCam1;
-    [SerializeField] GameObject virtualCam2;
+    [SerializeField] GameObject CamaraEncendido;
+    [SerializeField] GameObject CamaraApagado;
 
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if (virtualCam1.activeSelf)
+            if (CamaraEncendido.activeSelf)
             {
-                virtualCam1.SetActive(false);
-                virtualCam2.SetActive(true);
+                CamaraEncendido.SetActive(false);
+                CamaraApagado.SetActive(true);
             }
             else
             {
-                virtualCam1.SetActive(true);
-                virtualCam2.SetActive(false);
+                CamaraEncendido.SetActive(true);
+                CamaraApagado.SetActive(false);
             }
             
         }
