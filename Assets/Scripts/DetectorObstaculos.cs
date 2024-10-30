@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class DetectorObstaculos : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter(Collider other)
     {
-        
-    }
+        if (other.gameObject.CompareTag("Obstaculo"))
+        {
+            Destroy(other.gameObject);
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
         
     }
 }

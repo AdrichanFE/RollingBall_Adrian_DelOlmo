@@ -5,7 +5,7 @@ using UnityEngine;
 public class Martillos : MonoBehaviour
 {
     Rigidbody rb;
-    [SerializeField] float velocidad, fuerzaImpulso;
+    [SerializeField] private float fuerzaImpulso;
     [SerializeField] Vector3 direccionRotacion;
     // Start is called before the first frame update
     void Start()

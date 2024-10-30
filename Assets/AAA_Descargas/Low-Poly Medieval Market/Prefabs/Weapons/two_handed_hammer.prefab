@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 806263543691996680}
-  - component: {fileID: 6544208479457929079}
   - component: {fileID: 4368412467589865901}
   - component: {fileID: 1980247617912968551}
   - component: {fileID: 6717280052965351675}
@@ -36,21 +35,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6544208479457929079
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 34828986356577458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c8c92f7cc9106946af7f71f6de62d46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  velocidad: 2
-  fuerzaImpulso: 6
-  direccionRotacion: {x: 0, y: 0, z: 1}
 --- !u!33 &4368412467589865901
 MeshFilter:
   m_ObjectHideFlags: 0

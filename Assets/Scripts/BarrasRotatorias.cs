@@ -6,8 +6,7 @@ using static Cinemachine.CinemachineImpulseManager.ImpulseEvent;
 public class BarrasRotatorias : MonoBehaviour
 {
     Rigidbody rb;
-    float timer;
-    [SerializeField] float velocidad,fuerzaImpulso;
+    [SerializeField] float fuerzaImpulso;
     [SerializeField] Vector3 direccionRotacion;
     // Start is called before the first frame update
     void Start()
