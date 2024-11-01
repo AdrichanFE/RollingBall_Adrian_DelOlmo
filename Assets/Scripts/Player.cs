@@ -6,6 +6,11 @@ using TMPro;
 
 public class Player : MonoBehaviour
 {
+
+    public List<Vector3> checkPointPositions = new List<Vector3>();
+    private int indiceCheckPointActual = 0;
+    public GameObject respawnPointPrefab;
+
     Rigidbody rb;
     [SerializeField] float velocidad,x,z;
     [SerializeField] Vector3 direccionSalto;
@@ -24,7 +29,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb=GetComponent<Rigidbody>();    
+        rb=GetComponent<Rigidbody>();  
     }
 
     // Update is called once per frame
@@ -65,14 +70,22 @@ public class Player : MonoBehaviour
         bool resultado=Physics.Raycast(transform.position, new Vector3(0, -1, 0), distanciaDetSuelo,queEsSuelo);
         return resultado;
     }
-    
-    //void Muerte()
-    //{
-    //    if (vida <= 0)
-    //    {
-    //        Destroy(gameObject);
-    //    }
-    //}
+
+    void Respawn()
+    {
+        //Crea un nuevo jugador en la posicion del ultimo checkpoint
+        GameObject respawnPoint=Instantiate(respawnPointPrefab,transform.position, Quaternion.identity);
+        respawnPoint.GetComponent<RespawnPoint>().SetPosition(checkPointPositions[indiceCheckPointActual]);
+
+        //Instancia un nuevo jugador en el punto de respawn
+        GameObject newPlayer=Instantiate(this.gameObject,respawnPoint.transform.position, respawnPoint.transform.rotation);
+        newPlayer.GetComponent<Player>().indiceCheckPointActual++;
+
+        //Destruye el punto de respawn temporal
+        Destroy(respawnPoint, 2f);//Destruira el punto de respawn despues de 2 segundos
+
+
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -85,8 +98,21 @@ public class Player : MonoBehaviour
 
             Destroy(other.gameObject);
         }
+
+        if (other.CompareTag("DetectorCaida"))
+        {
+            Respawn();
+            Debug.Log("Lo has detectado");
+        }
+        else
+        {
+            Debug.Log("No lo has detectado");
+        }
        
     }
+
+
+
     //private void OnCollisionEnter(Collision collision)
     //{
     //    if (collision.gameObject.CompareTag("RodilloMortal"))
@@ -94,7 +120,15 @@ public class Player : MonoBehaviour
     //        vida -= 10;
     //        Muerte();
     //    }
-        
+
+    //}
+
+    //void Muerte()
+    //{
+    //    if (vida <= 0)
+    //    {
+    //        Destroy(gameObject);
+    //    }
     //}
 
 }
