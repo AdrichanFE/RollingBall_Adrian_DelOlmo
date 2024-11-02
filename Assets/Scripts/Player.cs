@@ -11,14 +11,14 @@ public class Player : MonoBehaviour
     [SerializeField] Vector3 vectorPoint;
 
     Rigidbody rb;
-    [SerializeField] float velocidad,x,z;
+    [SerializeField] float velocidad;
     [SerializeField] Vector3 direccionSalto;
     [SerializeField] float fuerzaSalto,fuerzaMove,distanciaDetSuelo;
-    [SerializeField] int vida;
     [SerializeField] TMP_Text textoPuntuacion;
     [SerializeField] LayerMask queEsSuelo;
     [SerializeField] AudioClip sonidoNota;
     [SerializeField] AudioManager audioManager;
+    private float x, z;
     private int puntuacion;
     private Vector3 direccionMove;
     private Vector3 playerPosition;
@@ -111,23 +111,5 @@ public class Player : MonoBehaviour
         }
 
     }
-
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.gameObject.CompareTag("RodilloMortal"))
-    //    {
-    //        vida -= 10;
-    //        Muerte();
-    //    }
-
-    //}
-
-    //void Muerte()
-    //{
-    //    if (vida <= 0)
-    //    {
-    //        Destroy(gameObject);
-    //    }
-    //}
 
 }

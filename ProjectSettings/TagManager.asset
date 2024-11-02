@@ -10,6 +10,7 @@ TagManager:
   - Obstaculo
   - DetectorCaida
   - CheckPoint
+  - Corona
   layers:
   - Default
   - TransparentFX
