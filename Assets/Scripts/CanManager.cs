@@ -9,6 +9,7 @@ public class CanManager : MonoBehaviour
     public void EmpezarPartida()
     {
         SceneManager.LoadScene(1);
+        Time.timeScale = 1.0f;
     }
     public void TerminarJuego()
     {

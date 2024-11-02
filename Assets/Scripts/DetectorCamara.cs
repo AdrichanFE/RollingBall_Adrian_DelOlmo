@@ -16,7 +16,7 @@ public class DetectorCamara : MonoBehaviour
             {
                 CamaraEncendido.SetActive(false);
                 CamaraApagado.SetActive(true);
-                Debug.Log("Detectado");
+                
             }
             else
             {

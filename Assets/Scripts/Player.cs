@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     [SerializeField] Vector3 direccionSalto;
     [SerializeField] float fuerzaSalto,fuerzaMove,distanciaDetSuelo;
     [SerializeField] TMP_Text textoPuntuacion;
+    [SerializeField] GameObject menuPausa;
     [SerializeField] LayerMask queEsSuelo;
     [SerializeField] AudioClip sonidoNota;
     [SerializeField] AudioManager audioManager;
@@ -46,9 +47,14 @@ public class Player : MonoBehaviour
     }
     private void FixedUpdate()//Ciclo de fisicas, es fijo. Se reproduce 0.02 segundos.
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Time.timeScale = 0f;
+            menuPausa.SetActive(true);
+            MovimientoNormal();
+        }
         MovimientoNormal();
-        
-        
+
     }
 
     void MovimientoNormal()
@@ -56,8 +62,6 @@ public class Player : MonoBehaviour
          direccionMove=new Vector3(x,0,z);
          rb.AddForce((direccionMove).normalized * fuerzaMove, ForceMode.Force);
     }
-
-
     void Saltar()
     {
         if (Input.GetKeyDown(KeyCode.Space)&&!esVistaCenital&&DetectarSuelo())
@@ -70,7 +74,6 @@ public class Player : MonoBehaviour
         bool resultado=Physics.Raycast(transform.position, new Vector3(0, -1, 0), distanciaDetSuelo,queEsSuelo);
         return resultado;
     }
-
 
     private void OnTriggerEnter(Collider other)
     {
