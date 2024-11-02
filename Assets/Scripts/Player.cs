@@ -7,9 +7,8 @@ using TMPro;
 public class Player : MonoBehaviour
 {
 
-    public List<Vector3> checkPointPositions = new List<Vector3>();
-    private int indiceCheckPointActual = 0;
-    public GameObject respawnPointPrefab;
+    [SerializeField] List<GameObject> checkPoints;
+    [SerializeField] Vector3 vectorPoint;
 
     Rigidbody rb;
     [SerializeField] float velocidad,x,z;
@@ -20,8 +19,9 @@ public class Player : MonoBehaviour
     [SerializeField] LayerMask queEsSuelo;
     [SerializeField] AudioClip sonidoNota;
     [SerializeField] AudioManager audioManager;
-    int puntuacion;
-    Vector3 direccionMove;
+    private int puntuacion;
+    private Vector3 direccionMove;
+    private Vector3 playerPosition;
 
     public bool esVistaCenital { get; set; } = false;//Esto lo uso para poder usar esta variable en el detector de la camara cenital
 
@@ -71,24 +71,15 @@ public class Player : MonoBehaviour
         return resultado;
     }
 
-    void Respawn()
-    {
-        //Crea un nuevo jugador en la posicion del ultimo checkpoint
-        GameObject respawnPoint=Instantiate(respawnPointPrefab,transform.position, Quaternion.identity);
-        respawnPoint.GetComponent<RespawnPoint>().SetPosition(checkPointPositions[indiceCheckPointActual]);
-
-        //Instancia un nuevo jugador en el punto de respawn
-        GameObject newPlayer=Instantiate(this.gameObject,respawnPoint.transform.position, respawnPoint.transform.rotation);
-        newPlayer.GetComponent<Player>().indiceCheckPointActual++;
-
-        //Destruye el punto de respawn temporal
-        Destroy(respawnPoint, 2f);//Destruira el punto de respawn despues de 2 segundos
-
-
-    }
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.CompareTag("CheckPoint"))
+        {
+            vectorPoint = other.transform.position;
+            playerPosition = vectorPoint;
+        }
+
 
         if (other.gameObject.CompareTag("Coleccionable")) 
         {
@@ -99,19 +90,27 @@ public class Player : MonoBehaviour
             Destroy(other.gameObject);
         }
 
-        if (other.CompareTag("DetectorCaida"))
+
+        if (other.gameObject.CompareTag("DetectorCaida"))
         {
-            Respawn();
-            Debug.Log("Lo has detectado");
+
+            Rigidbody playerRigidbody = this.gameObject.GetComponent<Rigidbody>();
+            if (playerRigidbody != null)
+            {
+                //Con esto detenemos temporalmente la fisica del judagor
+                playerRigidbody.velocity = Vector3.zero;
+
+                //Movemos al jugador a la nueva posicion
+                playerRigidbody.MovePosition(vectorPoint);
+
+                //Con esto reactivamos la fisica
+                playerRigidbody.useGravity = true;
+
+                //Se podria programar un pequeño delay para reactivar la fisica del jugador, pero creo que queda bien asi como esta
+            }
         }
-        else
-        {
-            Debug.Log("No lo has detectado");
-        }
-       
+
     }
-
-
 
     //private void OnCollisionEnter(Collision collision)
     //{

@@ -9,6 +9,7 @@ TagManager:
   - DetectorCamara
   - Obstaculo
   - DetectorCaida
+  - CheckPoint
   layers:
   - Default
   - TransparentFX
