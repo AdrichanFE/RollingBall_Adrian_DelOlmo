@@ -16,8 +16,10 @@ public class Player : MonoBehaviour
     [SerializeField] float fuerzaSalto,fuerzaMove,distanciaDetSuelo;
     [SerializeField] TMP_Text textoPuntuacion;
     [SerializeField] GameObject menuPausa;
+    [SerializeField] GameObject menuVictoria;
     [SerializeField] LayerMask queEsSuelo;
     [SerializeField] AudioClip sonidoNota;
+    [SerializeField] AudioClip sonidoVictoria;
     [SerializeField] AudioManager audioManager;
     private float x, z;
     private int puntuacion;
@@ -91,6 +93,14 @@ public class Player : MonoBehaviour
             textoPuntuacion.SetText("Puntuacion: " + puntuacion);
 
             Destroy(other.gameObject);
+        } 
+        
+        if (other.gameObject.CompareTag("Corona")) 
+        {
+            audioManager.ReproducirSonidoVictoria(sonidoVictoria);
+            Time.timeScale = 0f;
+            menuVictoria.SetActive(true);
+            MovimientoNormal();
         }
 
 

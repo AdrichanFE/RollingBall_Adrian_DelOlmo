@@ -12,14 +12,14 @@ GameObject:
   - component: {fileID: 4469632479583025050}
   - component: {fileID: 33236651954121468}
   - component: {fileID: 23292731569222066}
-  - component: {fileID: -1809899909393474080}
-  - component: {fileID: 6009552294018343564}
+  - component: {fileID: 3796972824705492246}
+  - component: {fileID: 8088712134782732745}
   m_Layer: 0
   m_Name: Furniture_elixir1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4170232475965482
 Transform:
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.8174229, y: 2.8727841, z: 2.4498}
+  m_LocalScale: {x: 3.2254, y: 3.7316, z: 3.425}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c59ca40e9d3a5134dbe098c88b9b0583, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidad: 2
+  velocidad: 1
   velocidadRotacion: 50
   direccionRotacion: {x: 0, y: 1, z: 0}
   direccion: {x: 0, y: 1, z: 0}
@@ -102,7 +102,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &-1809899909393474080
+--- !u!54 &3796972824705492246
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,12 +124,12 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
+  m_UseGravity: 1
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &6009552294018343564
+--- !u!65 &8088712134782732745
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,5 +148,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.23162436, y: 0.24044909, z: 0.20943679}
-  m_Center: {x: 0.0017770827, y: 0.10515956, z: -0.0038206056}
+  m_Size: {x: 0.20178223, y: 0.213171, z: 0.20179462}
+  m_Center: {x: 0, y: 0.10658646, z: 0.00000047683716}
