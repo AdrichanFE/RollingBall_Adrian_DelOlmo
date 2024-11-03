@@ -4941,7 +4941,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Crown Hunters
+  m_text: Crown Hunter
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 740a7d084a056214eb8a7eaeaf8d6a77, type: 2}
   m_sharedMaterial: {fileID: -3445280616393714600, guid: 740a7d084a056214eb8a7eaeaf8d6a77,
