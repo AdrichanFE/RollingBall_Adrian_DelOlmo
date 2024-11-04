@@ -7,6 +7,9 @@ public class CoronaFinal : MonoBehaviour
     [SerializeField] float velocidad,velocidadRotacion;
     [SerializeField] Vector3 direccionRotacion;
     [SerializeField] Vector3 direccion;
+    [SerializeField] AudioManager audioManager;
+    [SerializeField] AudioClip sonidoVictoria;
+    [SerializeField] GameObject menuVictoria;
     private float timer;
     // Start is called before the first frame update
     void Start()
@@ -25,6 +28,16 @@ public class CoronaFinal : MonoBehaviour
         {
             direccion *= -1;
             timer = 0;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            audioManager.ReproducirSonidoVictoria(sonidoVictoria);
+            Time.timeScale = 0f;
+            menuVictoria.SetActive(true);
         }
     }
 }

@@ -18,7 +18,7 @@ public class BarrasRotatorias : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //transform.Rotate(direccionRotacion * velocidad * Time.deltaTime, Space.World);
+       
        
 
     }
