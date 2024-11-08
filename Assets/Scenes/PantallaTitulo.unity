@@ -2788,7 +2788,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 20, y: -83.444}
+  m_AnchoredPosition: {x: 25.2, y: -55.7}
   m_SizeDelta: {x: 238.2658, y: 200.9762}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &990073877
@@ -2818,10 +2818,14 @@ MonoBehaviour:
 
 
     -Reach the CROWN and
-    Win the game'
+    Win the game
+
+
+    -Good Luck Hunter'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 740a7d084a056214eb8a7eaeaf8d6a77, type: 2}
+  m_sharedMaterial: {fileID: -3445280616393714600, guid: 740a7d084a056214eb8a7eaeaf8d6a77,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2845,14 +2849,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
