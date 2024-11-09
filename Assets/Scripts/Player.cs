@@ -81,7 +81,15 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.CompareTag("CheckPoint"))
         {
-            vectorPoint = other.transform.position;
+            // Calcular la dirección desde el jugador hasta el checkpoint
+            Vector3 DireccionHastaCheckPoint = other.transform.position - transform.position;
+
+            // Vectores Para aparecer un poc mas atras y no buguear los checkpoint
+            Vector3 unPocoMasAtras = DireccionHastaCheckPoint.normalized;
+            Vector3 paraAtras = new Vector3(0, 0, -2);
+
+            // Calcular la nueva posición del vectorPoint
+            vectorPoint = other.transform.position + unPocoMasAtras + paraAtras;
             playerPosition = vectorPoint;
         }
 
@@ -98,17 +106,17 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("DetectorCaida"))
         {
 
-            Rigidbody playerRigidbody = this.gameObject.GetComponent<Rigidbody>();
-            if (playerRigidbody != null)
+            rb= gameObject.GetComponent<Rigidbody>();
+            if (rb != null)
             {
                 //Con esto detenemos temporalmente la fisica del judagor
-                playerRigidbody.velocity = Vector3.zero;
+                rb.velocity = Vector3.zero;
 
                 //Movemos al jugador a la nueva posicion
-                playerRigidbody.MovePosition(vectorPoint);
+                rb.MovePosition(vectorPoint);
 
                 //Con esto reactivamos la fisica
-                playerRigidbody.useGravity = true;
+                rb.useGravity = true;
 
                 //Se podria programar un pequeño delay para reactivar la fisica del jugador, pero creo que queda bien asi como esta
             }
