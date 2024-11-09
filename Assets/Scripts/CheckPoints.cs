@@ -12,7 +12,6 @@ public class CheckPoints : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             positions.Add(transform.position);
-            Debug.Log("Si lo ha detectado");
         }
     }
 
